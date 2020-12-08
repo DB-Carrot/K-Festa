@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
@@ -10,4 +11,8 @@ urlpatterns = [
     path('format/format_list/<format_key>', views.format_list, name='format_list'),
     path('location/', views.location, name="location"),
     path('location/location_list/<region_key>', views.location_list, name='location_list'),
+    path('new_festival/', views.new_festival, name="new"),
+    path('detail/<festival_key>/', views.detail_festival, name="detail"),
+    path('edit/<festival_key>/', views.festival_edit, name="edit"),
+    path('delete/<festival_key>/', views.festival_delete, name="delete"),
 ]

@@ -1,0 +1,29 @@
+{% extends 'festival/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div id="wrapper">
+
+    <!-- Banner -->
+        <section id="intro" class="main">
+            <h1>Edit Festival</h1>
+            <form action = "" method="post">
+                {% csrf_token %}
+                <table>
+                    {{ form }}
+                </table>
+
+                <ul class="actions">
+                    <li><input type="submit" value="EDIT" class="button big" onclick="return confirm('정말로 수정하시겠습니까?');"></li>
+                </ul>
+            </form>
+
+        </section>
+
+</div>
+    
+
+
+{% endblock content %}

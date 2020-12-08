@@ -1565,73 +1565,13 @@
 		<!-- Header -->
 			<header id="header" class="alt">
 				<div class="inner">
-					<h1>K-Festa</h1>
+					<h1><a href="{% url 'index' %}">K-Festa</a></h1>
 					<p>local festival introduction service by Team.Carrot</a></p>
 				</div>
 			</header>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Banner -->
-					<section id="intro" class="main">
-						<span class="icon fa-diamond major"></span>
-						<h2>Local Festival Blog</h2>
-						<p>K-Festa는 대한민국 지역 축제 활성화와 건강한 시민 여가생활을 목표로 하는 데이터베이스 웹 서비스 입니다.
-							<br> Category를 눌러 테마별 축제 리스트를 확인할 수 있으며,
-							<br> Location을 눌러 지역별 축제 리스트를 확인할 수 있습니다.
-							<br> Festival Format에서는 COVID-19 상황을 반영한 유형별 축제 리스트를 확인하실 수 있습니다.
-							<br> 개발자에 대해 궁금하다면 Developer을 눌러주세요.
-						</p>
-						<ul class="actions">
-							<li><a href="#" class="button big">Log in</a></li>
-							<li><a href="{% url 'new' %}" class="button big"> New festival </a></li>
-						</ul>
-					</section>
-
-				<!-- Items -->
-					<section class="main items">
-						<article class="item">
-							<header>
-								<a href="{% url 'category_list' 100 %}"><img src="../../static/img/pic01.jpg" alt="" /></a>
-								<h3>Category</h3>
-							</header>
-							<p>Fusce malesuada efficitur venenatis. Pellentesque tempor leo sed massa hendrerit hendrerit. In sed feugiat est, eu congue elit. Ut porta magna vel felis sodales vulputate. Donec faucibus dapibus lacus non ornare.</p>
-							<ul class="actions">
-								<li><a href="{% url 'category_list' 100 %}" class="button">More</a></li>
-							</ul>
-						</article>
-						<article class="item">
-							<header>
-								<a href="{% url 'location_list' 1 %}"><img src="../../static/img/pic02.jpg" alt="" /></a>
-								<h3>Location</h3>
-							</header>
-							<p>Fusce malesuada efficitur venenatis. Pellentesque tempor leo sed massa hendrerit hendrerit. In sed feugiat est, eu congue elit. Ut porta magna vel felis sodales vulputate. Donec faucibus dapibus lacus non ornare.</p>
-							<ul class="actions">
-								<li><a href="{% url 'location_list' 1 %}" class="button">More</a></li>
-							</ul>
-						</article>
-						<article class="item">
-							<header>
-								<a href="{% url 'format_list' 1 %}"><img src="../../static/img/pic03.jpg" alt="" /></a>
-								<h3>Festival Format</h3>
-							</header>
-							<p>Fusce malesuada efficitur venenatis. Pellentesque tempor leo sed massa hendrerit hendrerit. In sed feugiat est, eu congue elit. Ut porta magna vel felis sodales vulputate. Donec faucibus dapibus lacus non ornare.</p>
-							<ul class="actions">
-								<li><a href="{% url 'format_list' 1 %}" class="button">More</a></li>
-							</ul>
-						</article>
-						<article class="item">
-							<header>
-								<a href="#"><img src="../../static/img/pic04.jpg" alt="" /></a>
-								<h3>Developer</h3>
-							</header>
-							<p>Fusce malesuada efficitur venenatis. Pellentesque tempor leo sed massa hendrerit hendrerit. In sed feugiat est, eu congue elit. Ut porta magna vel felis sodales vulputate. Donec faucibus dapibus lacus non ornare.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-					</section>
+            {% block content %}
+            {% endblock content %}
 
 				<!-- CTA -->
 					<section id="cta" class="main special">

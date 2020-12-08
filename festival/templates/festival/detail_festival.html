@@ -1,0 +1,33 @@
+{% extends 'festival/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div id="wrapper">
+
+    <!-- Banner -->
+        <section id="intro" class="main">
+            <h3>{{ festival.name }}</h3>
+            <p style="margin-bottom:0;">시작일 : {{ festival.start_date }}</p>
+            <p style="margin-bottom:0;">종료일 : {{ festival.end_date }}</p>
+            <br>
+            <p>{{ festival.content }}</p>
+
+            <hr>
+
+            <ul class="actions">
+                <li><a href="{% url 'index' %}" class="button big">Back</a></li>
+                <li><a href="{% url 'edit' festival.festival_key %}" class="button big">Edit</a></li>
+                <li><a href="{% url 'delete' festival.festival_key %}" class="button big" onclick="return confirm('정말로 삭제하시겠습니까?');">Delete</a></li>
+            </ul>
+
+        </section>
+
+</div>
+
+
+
+
+{% endblock content %}
+

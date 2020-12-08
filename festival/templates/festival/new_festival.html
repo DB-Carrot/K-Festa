@@ -1,0 +1,27 @@
+{% extends 'festival/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div id="wrapper">
+
+    <!-- Banner -->
+        <section id="intro" class="main">
+            <h2>New Festival</h2>
+
+            <form action = "" method="post">
+                {% csrf_token %}
+                <table>
+                    {{ form }}
+                </table>
+
+                <ul class="actions">
+                    <li><input type="submit" value="SAVE" class="button big"></li>
+                </ul>
+            </form>
+
+        </section>
+
+</div>
+{% endblock content %}

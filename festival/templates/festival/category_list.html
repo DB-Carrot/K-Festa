@@ -65,7 +65,7 @@
                       <img src="{{ festival.image.url }}" class="img-fluid" alt="업서">
                         {% endif %}
                       <div class="portfolio-info">
-                        <h4>{{ festival.name }}</h4>
+                        <h4><a href="{% url 'detail' festival.festival_key %}">{{ festival.name }}</a></h4>
                         <p>{{ festival.content }} </p>
                       </div>
                     </div>

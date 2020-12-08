@@ -6,6 +6,7 @@ from .models import *
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import FestivalForm, ReviewForm
 
 
 def index(request):
@@ -72,4 +73,37 @@ def location_list(request, region_key):
     return render(request, 'festival/location_list.html',{'festival_all':festival_all, 'location':location, 'festivals':festivals, 'page_range':page_range, 'paginator':paginator })
 
 
-    
+def festival_delete(request, festival_key):
+    festival = get_object_or_404(Festival, festival_key=festival_key)
+    festival.delete()
+    return redirect(index)
+
+def festival_edit(request, festival_key):
+    festival = get_object_or_404(Festival, festival_key=festival_key)
+
+    if request.method == 'POST': 
+        form = FestivalForm(request.POST, instance=festival)
+        if form.is_valid():
+            festival = form.save()
+            return redirect(index)
+    else: 
+        form = FestivalForm(instance=festival)
+
+    return render(request, 'festival/edit_festival.html', {'form':form})
+
+
+def new_festival(request):
+    if request.method == 'POST': 
+        form = FestivalForm(request.POST)
+        if form.is_valid():
+            festival = form.save()
+            return redirect(index)
+    else: 
+        form = FestivalForm()
+    return render(request, 'festival/new_festival.html', {'form':form})
+
+
+def detail_festival(request, festival_key):
+    festival = get_object_or_404(Festival, festival_key=festival_key)
+    form = ReviewForm()
+    return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form})
