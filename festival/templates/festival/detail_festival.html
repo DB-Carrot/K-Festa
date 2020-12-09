@@ -24,6 +24,31 @@
 
         </section>
 
+        <hr>
+
+
+        {% for review in festival.reviews.all %}
+        <div>
+            <table>
+                <tr>
+                    <td width="30%"></td>
+                    <td width="60%">{{review.content}}</td>
+                    <td width="10%"><a href="{% url 'delete_review' festival.festival_key review.review_key %}" onclick="return confirm('정말로 리뷰를 삭제하시겠습니까?');">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+        {% empty %}
+            <p>리뷰를 작성하세요!</p>
+        {% endfor %}
+
+        <form action="{% url 'new_review' festival.festival_key %}" method = 'post'>
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <center><input type='submit' value='Save'></center>
+        </form>
+
 </div>
 
 

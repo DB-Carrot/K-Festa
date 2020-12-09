@@ -26,6 +26,8 @@
         text-decoration: none;
         color: grey;
     }
+
+
     a.page-link:hover {
         border: 1px solid #EF6480;
         text-decoration: none;
@@ -53,6 +55,13 @@
         background-color: grey;
         color: #ffffff;
     }
+
+    /* Pagination */
+    .pagination li.active a { 
+        color:#fff !important; background:grey!important; border-color:grey !important; 
+    }
+
+
 </style>
 
 <div class="container mt-5 pb-5" style="width: 50%">
@@ -65,8 +74,8 @@
                       <img src="{{ festival.image.url }}" class="img-fluid" alt="업서">
                         {% endif %}
                       <div class="portfolio-info">
-                        <h4>{{ festival.name }}</h4>
-                        <p>{{ festival.content }} </p>
+                        <h4><a href="{% url 'detail' festival.festival_key %}">{{ festival.name }}</a></h4>
+                        <p>{{ festival.content|truncatechars:150 }} </p>
                       </div>
                     </div>
                   </div>
@@ -83,13 +92,13 @@
           <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span> </a> </li>
           {% endif %}
           {% for page in paginator.page_range %}
-          <li {% if posts.number == page %} class="page-item active" {% endif %}>
+          <li {% if festivals.number == page %} class="page-item active" {% endif %}>
             <a class="page-link" href="?page={{ page }}"><span>{{ page }}</span></a>
           </li>
           {% endfor %}
-          {% if products.has_next %}
+          {% if festivals.has_next %}
           <li class="page-item">
-              <a class="page-link" href="?page={{ products.next_page_number }}">
+              <a class="page-link" href="?page={{ festivals.next_page_number }}">
                   <span>&raquo;</span>
               </a>
           </li>

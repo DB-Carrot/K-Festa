@@ -3,13 +3,31 @@ from festival.models import *
 
 admin.site.register(User)
 
-admin.site.register(Festival)
+@admin.register(Festival)
+class FestivalAdmin(admin.ModelAdmin):
+    list_display = ['festival_key', 'category_key', 'region_key', 'name', 'start_date', 'end_date']
+    search_filds = ['festival_key']
 
-admin.site.register(FestivalCategory)
+@admin.register(Format)
+class FormatAdmin(admin.ModelAdmin):
+    list_display = ['format_key', 'format']
+    search_filds = ['format']
 
-admin.site.register(FestivalRegion)
+@admin.register(FestivalCategory)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['category_key', 'category_name']
+    search_filds = ['category_name']
 
-admin.site.register(FestivalReview)
+@admin.register(FestivalRegion)
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ['region_key', 'region_name']
+    search_filds = ['region_name']
 
-admin.site.register(Format)
+
+@admin.register(FestivalReview)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['review_key', 'festival_key', 'date']
+    search_filds = ['review_key']
+
+
 

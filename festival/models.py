@@ -117,10 +117,17 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
+def festival_number():
+    num = Festival.objects.count()
+    if num == None:
+        return 1
+    else:
+        return num + 1
+
 
 class Festival(models.Model):
-    festival_key = models.IntegerField(primary_key=True)
-    region_key = models.ForeignKey('FestivalRegion', models.DO_NOTHING, db_column='region_key')
+    festival_key = models.IntegerField(primary_key=True, unique=True, default=festival_number)
+    region_key = models.ForeignKey('FestivalRegion', models.DO_NOTHING, db_column='region_key', related_name='regions')
     category_key = models.IntegerField()
     format_key = models.CharField(max_length=15)
     name = models.CharField(max_length=50)
@@ -152,16 +159,28 @@ class FestivalRegion(models.Model):
         db_table = 'festival_region'
 
 
-class FestivalReview(models.Model):
-    review_key = models.IntegerField(primary_key=True)
-    user_key = models.ForeignKey('User', models.DO_NOTHING, db_column='user_key')
-    festival_key = models.ForeignKey(Festival, models.DO_NOTHING, db_column='festival_key')
-    content = models.CharField(max_length=10)
-    date = models.DateField()
+def number():
+    num = FestivalReview.objects.count()
+    if num == None:
+        return 1
+    else:
+        return num + 1
 
+
+class FestivalReview(models.Model):
+    review_key = models.IntegerField(primary_key=True, unique=True, default=number)
+    festival_key = models.ForeignKey('Festival', db_column='festival_key', on_delete=models.CASCADE, related_name='reviews')
+    content = models.CharField(max_length=10)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+    
     class Meta:
         managed = False
         db_table = 'festival_review'
+
+
 
 
 class Format(models.Model):
@@ -184,3 +203,4 @@ class User(models.Model):
     class Meta:
         managed = False
         db_table = 'user'
+

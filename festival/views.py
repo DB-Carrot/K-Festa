@@ -85,7 +85,7 @@ def festival_edit(request, festival_key):
         form = FestivalForm(request.POST, instance=festival)
         if form.is_valid():
             festival = form.save()
-            return redirect(index)
+            return redirect('/app/detail/'+str(festival.pk))
     else: 
         form = FestivalForm(instance=festival)
 
@@ -97,7 +97,7 @@ def new_festival(request):
         form = FestivalForm(request.POST)
         if form.is_valid():
             festival = form.save()
-            return redirect(index)
+            return redirect('/app/detail/'+str(festival.pk))
     else: 
         form = FestivalForm()
     return render(request, 'festival/new_festival.html', {'form':form})
@@ -106,4 +106,21 @@ def new_festival(request):
 def detail_festival(request, festival_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
     form = ReviewForm()
-    return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form})
+    review = FestivalReview()
+    return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form, 'review':review})
+
+def new_review(request, festival_key):
+    festival = get_object_or_404(Festival, festival_key=festival_key)
+    form= ReviewForm(request.POST)
+    if form.is_valid():
+        review = FestivalReview()
+        review = form.save(commit=False)
+        review.festival_key = festival
+        review.save()
+    return redirect('/app/detail/'+str(festival.pk))
+
+def delete_review(request, festival_key, review_key):
+    festival = get_object_or_404(Festival, festival_key=festival_key)
+    review = get_object_or_404(FestivalReview, review_key=review_key)
+    review.delete()
+    return redirect('/app/detail/'+str(festival.pk))

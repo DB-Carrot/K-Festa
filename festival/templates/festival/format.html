@@ -276,13 +276,13 @@ h3 {
 </head>
 <body>
 
-    		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="inner">
-					<h1><a href="{% url 'index' %}">K-Festa</a></h1>
-					<p>local festival introduction service by Team.Carrot</a></p>
-				</div>
-			</header>
+<!-- Header -->
+<header id="header" class="alt">
+	<div class="inner">
+		<h1><a href="{% url 'index' %}">K-Festa</a></h1>
+		<p>local festival introduction service by Team.Carrot</a></p>
+	</div>
+</header>
 
 <nav class="navbar store-nav navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -290,17 +290,17 @@ h3 {
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
       <ul class="navbar-nav">
-          {% if format.key == 1 %}
+          {% if format.format_key == '1' %}
           <li><a class="nav-item nav-link active" href="{% url 'format_list' 1 %}">오프라인</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'format_list' 1 %}">오프라인</a></li>
           {% endif %}
-          {% if format.key  == 2 %}
+          {% if format.format_key  == '2' %}
           <li><a class="nav-item nav-link active" href="{% url 'format_list' 2 %}">온라인</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'format_list' 2%}">온라인</a></li>
           {% endif %}
-          {% if format.key  == 3 %}
+          {% if format.format_key  == '3' %}
           <li><a class="nav-item nav-link active" href="{% url 'format_list' 3 %}">온/오프라인</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'format_list' 3 %}">온/오프라인</a></li>

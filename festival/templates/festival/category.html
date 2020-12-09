@@ -57,6 +57,7 @@
         color: #ffffff;
     }
 
+
     /* Header */
 
 	#header {
@@ -276,13 +277,13 @@ h3 {
 </head>
 <body>
 
-    		<!-- Header -->
-			<header id="header" class="alt">
-				<div class="inner">
-					<h1><a href="{% url 'index' %}">K-Festa</a></h1>
-					<p>local festival introduction service by Team.Carrot</a></p>
-				</div>
-			</header>
+<!-- Header -->
+<header id="header" class="alt">
+	<div class="inner">
+		<h1><a href="{% url 'index' %}">K-Festa</a></h1>
+		<p>local festival introduction service by Team.Carrot</a></p>
+	</div>
+</header>
 
 <nav class="navbar store-nav navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -290,37 +291,37 @@ h3 {
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
       <ul class="navbar-nav">
-          {% if category.name == '문화예술' %}
+          {% if category.category_key == 100 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 100 %}">문화예술</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 100 %}">문화예술</a></li>
           {% endif %}
-          {% if category.name == '생활축제' %}
+          {% if category.category_key == 101 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 101 %}">생활축제</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 101 %}">생활축제</a></li>
           {% endif %}
-          {% if category.name == '지역특산물' %}
+          {% if category.category_key == 102 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 102 %}">지역특산물</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 102 %}">지역특산물</a></li>
           {% endif %}
-          {% if category.name == '환경축제' %}
+          {% if category.category_key == 103 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 103 %}v">환경축제</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 103 %}">환경축제</a></li>
           {% endif %}
-          {% if category.name == '생활축제' %}
+          {% if category.category_key == 104 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 104 %}">생활축제</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 104 %}">생활축제</a></li>
           {% endif %}
-          {% if category.name == '전통예술' %}
+          {% if category.category_key == 105 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 105 %}">전통예술</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 105 %}">전통예술</a></li>
           {% endif %}
-          {% if category.name == '생태자원' %}
+          {% if category.category_key == 106 %}
           <li><a class="nav-item nav-link active" href="{% url 'category_list' 106 %}">생태자원</a></li>
           {% else %}
           <li><a class="nav-item nav-link" href="{% url 'category_list' 106 %}">생태자원</a></li>

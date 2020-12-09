@@ -4,10 +4,10 @@
 
 {% block content %}
 <style>
-        
     div img {
         width: 100%;
     }
+
     .portfolio-wrap svg.bi-cart3 {
         background : none;
         border: none;
@@ -53,43 +53,46 @@
         background-color: grey;
         color: #ffffff;
     }
+
+    /* Pagination */
+    .pagination li.active a { 
+        color:#fff !important; background:grey!important; border-color:grey !important; 
+    }
+
 </style>
 
 <div class="container mt-5 pb-5" style="width: 50%">
     <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
-            {% for festival in festival_all %}
-                {% if festival.region_key == location.region_key %}
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-wrap">
-                        {% if festival.image %}
-                      <img src="{{ festival.image.url }}" class="img-fluid" alt="업서">
-                        {% endif %}
-                      <div class="portfolio-info">
-                        <h4>{{ festival.name }}</h4>
-                        <p>{{ festival.content}} </p>
-                      </div>
-                    </div>
+            {% for festival in location.regions.all %}
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-wrap">
+                    {% if festival.image %}
+                  <img src="{{ festival.image.url }}" class="img-fluid" alt="업서">
+                    {% endif %}
+                  <div class="portfolio-info">
+                    <h4><a href="{% url 'detail' festival.festival_key %}">{{ festival.name }}</a></h4>
+                    <p>{{ festival.content|truncatechars:150}} </p>
                   </div>
-                {% endif %}
-
-            {% endfor %}
+                </div>
+              </div>
+        {% endfor %}
     </div>
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-          {% if festivals.has_previous %}
-          <li class="page-item"> <a class="page-link" href="?page={{ festivals.previous_page_number }}"><span>&laquo;</span></a> </li>
+          {% if festival_all.has_previous %}
+          <li class="page-item"> <a class="page-link" href="?page={{ festival_all.previous_page_number }}"><span>&laquo;</span></a> </li>
           {% else %}
           <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span> </a> </li>
           {% endif %}
           {% for page in paginator.page_range %}
-          <li {% if posts.number == page %} class="page-item active" {% endif %}>
+          <li {% if festivals.number == page %} class="page-item active" {% endif %}>
             <a class="page-link" href="?page={{ page }}"><span>{{ page }}</span></a>
           </li>
           {% endfor %}
-          {% if products.has_next %}
+          {% if festival_all.has_next %}
           <li class="page-item">
-              <a class="page-link" href="?page={{ products.next_page_number }}">
+              <a class="page-link" href="?page={{ festival_all.next_page_number }}">
                   <span>&raquo;</span>
               </a>
           </li>

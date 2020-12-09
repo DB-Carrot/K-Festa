@@ -15,4 +15,6 @@ urlpatterns = [
     path('detail/<festival_key>/', views.detail_festival, name="detail"),
     path('edit/<festival_key>/', views.festival_edit, name="edit"),
     path('delete/<festival_key>/', views.festival_delete, name="delete"),
+    path('detail/<festival_key>/review/', views.new_review, name="new_review"),
+    path('detail/<festival_key>/review/delete/<review_key>/', views.delete_review, name="delete_review"),
 ]
