@@ -16,6 +16,21 @@ def category(request):
     categories = FestivalCategory.objects.all()
     return render(request, 'festival/category.html', {'categories':categories})
 
+def all_festival(request):
+    festivals = Festival.objects.all()
+    page_numbers_range = 9
+    # 한 페이지에 나올 게시글 수
+    paginator = Paginator(festivals,page_numbers_range)
+    page = request.GET.get('page')
+    festivals = paginator.get_page(page)
+    current_page = int(page) if page else 1
+    start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+    end_index = start_index + page_numbers_range
+    page_range = paginator.page_range[start_index:end_index]
+
+    return render(request, 'festival/all_festival.html',{'festivals':festivals, 'page_range':page_range, 'paginator':paginator })
+
+
 def category_list(request, category_key):
     category = get_object_or_404(FestivalCategory, category_key=category_key)
     festival_all = Festival.objects.filter(category_key=category_key).all()
