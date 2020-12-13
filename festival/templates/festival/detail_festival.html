@@ -12,8 +12,19 @@
             <p style="margin-bottom:0;">시작일 : {{ festival.start_date }}</p>
             <p style="margin-bottom:0;">종료일 : {{ festival.end_date }}</p>
             <br>
-            <p>{{ festival.content }}</p>
-
+            <div class="container col-md-3"></div>
+            <div class="container col-md-6">
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
+                    <div class="portfolio-wrap" >
+                        {% if festival.image %}
+                        <img src="{{ festival.image }}" class="img-fluid" alt="업서">
+                        {% endif %}
+                        <br><br>
+                        <p>{{ festival.content }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container col-md-3"></div>
             <hr>
 
             <ul class="actions">
