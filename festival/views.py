@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.contrib.auth.forms import UserChangeForm
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import FestivalForm, ReviewForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -87,12 +88,13 @@ def location_list(request, region_key):
 
     return render(request, 'festival/location_list.html',{'festival_all':festival_all, 'location':location, 'festivals':festivals, 'page_range':page_range, 'paginator':paginator })
 
-
+@login_required(login_url='/account/login/')
 def festival_delete(request, festival_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
     festival.delete()
     return redirect(index)
 
+@login_required(login_url='/account/login/')
 def festival_edit(request, festival_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
 
@@ -106,7 +108,7 @@ def festival_edit(request, festival_key):
 
     return render(request, 'festival/edit_festival.html', {'form':form})
 
-
+@login_required(login_url='/account/login/')
 def new_festival(request):
     if request.method == 'POST': 
         form = FestivalForm(request.POST)
@@ -124,6 +126,7 @@ def detail_festival(request, festival_key):
     review = FestivalReview()
     return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form, 'review':review})
 
+@login_required(login_url='/account/login/')
 def new_review(request, festival_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
     form= ReviewForm(request.POST)
@@ -134,6 +137,7 @@ def new_review(request, festival_key):
         review.save()
     return redirect('/app/detail/'+str(festival.pk))
 
+@login_required(login_url='/account/login/')
 def delete_review(request, festival_key, review_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
     review = get_object_or_404(FestivalReview, review_key=review_key)
