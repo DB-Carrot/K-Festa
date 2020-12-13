@@ -6,12 +6,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../../static/css/main.css" />
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/"> 
-		<!-- Bootstrap core CSS -->
-		<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<style>
 		@import url(font-awesome.min.css);
@@ -1571,14 +1565,99 @@
 		<!-- Header -->
 			<header id="header" class="alt">
 				<div class="inner">
-					<h1><a href="{% url 'index' %}">K-Festa</a></h1>
+					<h1>K-Festa</h1>
 					<p>local festival introduction service by Team.Carrot</a></p>
 				</div>
 			</header>
 
-            {% block content %}
-            {% endblock content %}
+		<!-- Wrapper -->
+			<div id="wrapper">
 
+				<!-- Banner -->
+					<section id="intro" class="main">
+						<span class="icon fa-diamond major"></span>
+						<h2>Local Festival Blog</h2>
+						<p>K-Festa는 대한민국 지역 축제 활성화와 건강한 시민 여가생활을 목표로 하는 데이터베이스 웹 서비스 입니다.
+							<br> Category를 눌러 테마별 축제 리스트를 확인할 수 있으며,
+							<br> Location을 눌러 지역별 축제 리스트를 확인할 수 있습니다.
+							<br> Festival Format에서는 COVID-19 상황을 반영한 유형별 축제 리스트를 확인하실 수 있습니다.
+							<br> 전국 모든 축제 리스트를 한 눈에 보고 싶다면 All Festival을 눌러주세요.
+						</p>
+						
+						{% if user.is_active %}
+						<ul class="actions">
+							<li><a href="{% url 'logout' %}" class="button big">Log out</a></li>
+							<li><a href="{% url 'new' %}" class="button big"> New festival </a></li>
+						</ul>
+						{% else %}
+						<ul class="actions">
+							<li><a href="{% url 'login' %}" class="button big">Log in</a></li>
+							<li><a href="{% url 'signup' %}" class="button big"> Sign up </a></li>
+						</ul>
+						
+						{% endif %}
+
+					</section>
+
+				<!-- Items -->
+					<section class="main items">
+						<article class="item">
+							<header>
+								<a href="{% url 'category_list' 100 %}"><img src="../../static/img/pic01.jpg" alt="" /></a>
+								<h3>Category</h3>
+							</header>
+							<p>문화예술부터 생태자원까지. 해외 축제가 부럽지 않은 다양한 테마의 국내 축제를 사랑하는 사람과 함께 취향에 맞춰 즐겨보세요. 새로운 테마에 도전하는 것도 재밌을거에요.</p>
+							<ul class="actions">
+								<li><a href="{% url 'category_list' 100 %}" class="button">More</a></li>
+							</ul>
+						</article>
+						<article class="item">
+							<header>
+								<a href="{% url 'location_list' 1 %}"><img src="../../static/img/pic02.jpg" alt="" /></a>
+								<h3>Location</h3>
+							</header>
+							<p>우리 지역의 문화가 축제가 되고, 축제가 다시 우리 지역 문화가 되는 축제! 지역의 음식, 자영경관, 명소, 인물의 스토리가 담긴 다양한 지역 축제를 즐겨보세요.</p>
+							<ul class="actions">
+								<li><a href="{% url 'location_list' 1 %}" class="button">More</a></li>
+							</ul>
+						</article>
+						<article class="item">
+							<header>
+								<a href="{% url 'format_list' 1 %}"><img src="../../static/img/pic03.jpg" alt="" /></a>
+								<h3>Festival Format</h3>
+							</header>
+							<p>코로나 바이러스 때문에 집 밖으로 나오지 못하는 당신을 위해 준비했답니다. 집에서도 온라인 페스티벌을 통해 남부럽지 않은 여가생활을 즐겨보세요!</p>
+							<ul class="actions">
+								<li><a href="{% url 'format_list' 1 %}" class="button">More</a></li>
+							</ul>
+						</article>
+						<article class="item">
+							<header>
+								<a href="{% url 'festival' %}"><img src="../../static/img/pic04.jpg" alt="" /></a>
+								<h3>All Festival</h3>
+							</header>
+							<p>전국의 다양한 지역 축제가 궁금하다면 여기를 눌러보세요! 보고 싶은 축제에 맞춰 여행지를 고르는 것도 색다른 경험이 될 거에요. 잊지 못할 추억을 만들어봐요.</p>
+							<ul class="actions">
+								<li><a href="{% url 'festival' %}" class="button">More</a></li>
+							</ul>
+						</article>
+					</section>
+
+				<!-- CTA -->
+					<section id="cta" class="main special">
+						<h2>Developer</h2>
+						<p>소프트웨어학과 2018038056 팀장 신은지<br />
+						소프트웨어학과 2018038082 팀원 최세화<br />
+						소프트웨어학과 2016031032 팀원 박지우</p>
+						<ul class="actions">
+							<li><a href="https://github.com/DB-Carrot/K-Festa" class="button big" target="_blank">Our Source code</a></li>
+						</ul>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">&copy; CBNU. Database System. <a href="https://templated.co" target="_blank">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+					</footer>
 
 			</div>
 

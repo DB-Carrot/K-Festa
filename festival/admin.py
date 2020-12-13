@@ -1,8 +1,6 @@
 from django.contrib import admin
 from festival.models import *
 
-admin.site.register(User)
-
 @admin.register(Festival)
 class FestivalAdmin(admin.ModelAdmin):
     list_display = ['festival_key', 'category_key', 'region_key', 'name', 'start_date', 'end_date']

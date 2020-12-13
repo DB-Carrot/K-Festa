@@ -1,9 +1,10 @@
-{% extends 'festival/format.html' %}
+{% extends 'festival/category.html' %}
 {% load static %}
 
 
 {% block content %}
 <style>
+    
         
     div img {
         width: 100%;
@@ -26,8 +27,6 @@
         text-decoration: none;
         color: grey;
     }
-
-
     a.page-link:hover {
         border: 1px solid #EF6480;
         text-decoration: none;
@@ -65,25 +64,24 @@
 </style>
 
 <div class="container mt-5 pb-5" style="width: 60%">
-
     <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
-        {% for festival in festivals %}
-        {% if festival.format_key == format.format_key%}
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                    <div class="portfolio-wrap card" style="height: 500px; margin-bottom: 30px;">
-                        {% if festival.image %}
-                        <img src="{{ festival.image }}" style="width:300px; height:300px;"class="img-fluid" alt="업서">
-                        {% endif %}
-                        <div class="portfolio-info" style="margin-bottom : 30px;">
-                            <center><h3 style="font-weight: bolder;"><a href="{% url 'detail' festival.festival_key %}">{{ festival.name|truncatechars:14 }}</a></h3></center>
-                            <p>{{ festival.content|truncatechars:100 }} </p>
+            {% for festival in festival_all %}
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                        <div class="portfolio-wrap card" style="height: 500px; margin-bottom: 30px;">
+                            {% if festival.image %}
+                            <img src="{{ festival.image }}" style="width:300px; height:300px;"class="img-fluid" alt="업서">
+                            {% endif %}
+                            <div class="portfolio-info" style="margin-bottom : 30px;">
+                                <center><h3 style="font-weight: bolder;"><a href="{% url 'detail' festival.festival_key %}">{{ festival.name|truncatechars:14 }}</a></h3></center>
+                                <p>{{ festival.content|truncatechars:100 }} </p>
+                            </div>
+                            <a href="{% url 'delete' festival.festival_key %}" class="button big" onclick="return confirm('정말로 삭제하시겠습니까?');">Delete</a>
                         </div>
-                        <a href="{% url 'delete' festival.festival_key %}" class="button big" onclick="return confirm('정말로 삭제하시겠습니까?');">Delete</a>
-                    </div>
-            </div>
-            {% endif %}
-        {% endfor %}
-</div>
+                </div>
+            {% endfor %}
+    </div>
+
+
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
