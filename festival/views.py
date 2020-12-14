@@ -123,8 +123,7 @@ def new_festival(request):
 def detail_festival(request, festival_key):
     festival = get_object_or_404(Festival, festival_key=festival_key)
     form = ReviewForm()
-    review = FestivalReview()
-    return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form, 'review':review})
+    return render(request, 'festival/detail_festival.html',{'festival':festival,'form':form})
 
 @login_required(login_url='/account/login/')
 def new_review(request, festival_key):
@@ -134,6 +133,7 @@ def new_review(request, festival_key):
         review = FestivalReview()
         review = form.save(commit=False)
         review.festival_key = festival
+        review.user = request.user
         review.save()
     return redirect('/app/detail/'+str(festival.pk))
 

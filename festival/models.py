@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.utils import timezone
 
 
 class AuthGroup(models.Model):
@@ -87,7 +88,7 @@ def festival_number():
         return num + 1
 
 class Festival(models.Model):
-    festival_key = models.IntegerField(primary_key=True)
+    festival_key = models.IntegerField(primary_key=True, default=festival_number)
     region_key = models.ForeignKey('FestivalRegion', models.DO_NOTHING, db_column='region_key')
     category_key = models.ForeignKey('FestivalCategory', models.DO_NOTHING, db_column='category_key')
     format_key = models.ForeignKey('Format', models.DO_NOTHING, db_column='format_key')
@@ -126,11 +127,11 @@ def number():
 
 
 class FestivalReview(models.Model):
-    review_key = models.IntegerField(primary_key=True)
+    review_key = models.IntegerField(primary_key=True, default=number)
     user = models.ForeignKey('account.User', models.DO_NOTHING)
-    festival_key = models.ForeignKey(Festival, models.DO_NOTHING, db_column='festival_key')
+    festival_key = models.ForeignKey(Festival, models.DO_NOTHING, db_column='festival_key', related_name='reviews')
     content = models.CharField(max_length=10)
-    date = models.DateField()
+    date = models.DateField(default=timezone.now())
 
     
     def __str__(self):
