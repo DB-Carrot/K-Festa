@@ -95,7 +95,7 @@ class Festival(models.Model):
     name = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
-    image = models.CharField(max_length=100, blank=True, null=True)
+    image = models.CharField(max_length=100, blank=True, null=True, default='http://sarac33.dothome.co.kr/images/default.png')
     content = models.TextField()
 
     class Meta:
